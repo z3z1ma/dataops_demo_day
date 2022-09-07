@@ -1,0 +1,25 @@
+version: 1
+default_environment: dev
+environments:
+- name: dev
+- name: staging
+- name: prod
+project_id: demo_day-667dae03-1dd8-48d6-9d0a-18c9054cc401
+plugins:
+  extractors:
+  - name: tap-github
+    variant: singer-io
+    pip_url: tap-github
+    config:
+      repository: z3z1ma/dbt-osmosis z3z1ma/dbt-feature-flags
+      start_date: '2021-01-01T00:00:00Z'
+  loaders:
+  - name: target-jsonl
+    variant: andyh1203
+    pip_url: target-jsonl
+  - name: target-postgres
+    variant: transferwise
+    pip_url: pipelinewise-target-postgres
+    config:
+      user: melty
+      dbname: meltano
