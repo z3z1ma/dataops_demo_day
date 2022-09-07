@@ -17,6 +17,12 @@ environments:
           host: 2.tcp.ngrok.io
           port: 11570
           default_target_schema: ci
+      transformers:
+      - name: dbt-postgres
+        config:
+          host: 2.tcp.ngrok.io
+          port: 11570
+          schema: analytics_cicd
 - name: prod
   config:
     plugins:
@@ -25,6 +31,12 @@ environments:
         config:
           host: 2.tcp.ngrok.io
           port: 11570
+      transformers:
+      - name: dbt-postgres
+        config:
+          host: 2.tcp.ngrok.io
+          port: 11570
+          schema: analytics
 project_id: demo_day-667dae03-1dd8-48d6-9d0a-18c9054cc401
 plugins:
   extractors:
@@ -44,3 +56,14 @@ plugins:
     config:
       user: melty
       dbname: meltano
+  transformers:
+  - name: dbt-postgres
+    variant: dbt-labs
+    pip_url: dbt-core~=1.1.0 dbt-postgres~=1.1.0
+    config:
+      host: localhost
+      port: 5432
+      user: melty
+      password: melty
+      dbname: meltano
+      schema: analytics_dev

@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: github
+    loader: meltano
+    tags: [meltano, singer, vcs]
+    schema: tap_github
+    tables:
+      - name: stargazers
+
