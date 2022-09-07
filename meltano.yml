@@ -2,8 +2,29 @@ version: 1
 default_environment: dev
 environments:
 - name: dev
+  config:
+    plugins:
+      loaders:
+      - name: target-postgres
+        config:
+          default_target_schema: dev
 - name: staging
+  config:
+    plugins:
+      loaders:
+      - name: target-postgres
+        config:
+          host: 2.tcp.ngrok.io
+          port: 11570
+          default_target_schema: ci
 - name: prod
+  config:
+    plugins:
+      loaders:
+      - name: target-postgres
+        config:
+          host: 2.tcp.ngrok.io
+          port: 11570
 project_id: demo_day-667dae03-1dd8-48d6-9d0a-18c9054cc401
 plugins:
   extractors:
